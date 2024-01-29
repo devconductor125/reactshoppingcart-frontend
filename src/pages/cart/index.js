@@ -95,7 +95,7 @@ const CartPage = () => {
                   </button>
                 </div>
                 <span className="font-semibold">
-                  ${(item.productDetail.precio * item.quantity).toFixed(2)}
+                  ${+(item.productDetail.precio * item.quantity).toFixed(2)}
                 </span>
 
                 <button onClick={() => handleRemove(item)}> X </button>
@@ -103,7 +103,7 @@ const CartPage = () => {
             ))}
           </div>
           <div className="mt-6 p-4 shadow-lg rounded-lg">
-            <h2 className="text-xl font-bold">Total: ${cart.totalPrice}</h2>
+            <h2 className="text-xl font-bold">Total: ${+cart.totalPrice.toFixed(2)}</h2>
           </div>
           <div className="flex justify-end w-full mt-6">
             <button className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-lg px-6 py-3 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onClick={sendOrder}>Send order</button>

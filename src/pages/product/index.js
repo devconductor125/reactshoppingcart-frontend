@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../slices/productSlice';
 import { Link } from 'react-router-dom';
@@ -20,11 +20,23 @@ const ProductPage = () => {
     getAllProducts()
   }, [dispatch])
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8);
+
+
+  const pageCount = Math.ceil(products.length / itemsPerPage);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="container mx-auto px-4">
       <h1 className="text-2xl font-bold text-center my-8">Products</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <div key={product.id} className="border p-4 rounded-xl shadow-2xl hover:shadow-lg transition-shadow duration-300">
             <img src={product.doc.url} alt='product'/>
             <h2 className="text-xl font-semibold mb-2">{product.doc.description}</h2>
@@ -37,6 +49,19 @@ const ProductPage = () => {
           </div>
         ))}
       </div>
+
+      <div className="flex justify-center mt-8">
+        {Array.from({ length: pageCount }, (_, i) => i + 1).map(number => (
+          <button
+            key={number}
+            onClick={() => paginate(number)}
+            className={`px-4 py-2 m-1 border rounded ${currentPage === number ? 'bg-blue-500 text-white' : 'bg-white'}`}
+          >
+            {number}
+          </button>
+        ))}
+      </div>
+
     </div>
   );
 };
