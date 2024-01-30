@@ -74,8 +74,11 @@ const CartPage = () => {
                   />
                   <div>
                     <h2 className="text-lg font-semibold">{item.productDetail.description}</h2>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 my-1">
                       Price: ${item.productDetail.precio}
+                    </p>
+                    <p className="text-sm text-gray-600 my-1">
+                      Code: {item.productDetail.codigo}
                     </p>
                   </div>
                 </div>

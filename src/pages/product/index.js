@@ -39,9 +39,12 @@ const ProductPage = () => {
         {currentProducts.map((product) => (
           <div key={product.id} className="border p-4 rounded-xl shadow-2xl hover:shadow-lg transition-shadow duration-300">
             <img src={product.doc.url} alt='product'/>
-            <h2 className="text-xl font-semibold mb-2">{product.doc.description}</h2>
             <div className='flex justify-between'>
-              <div className="text-gray-900 font-bold">$ {product.doc.precio}</div>
+              <div>
+                <div>{product.doc.codigo}</div>
+                <div>{product.doc.description}</div>
+                <div className="text-gray-900 font-bold">$ {product.doc.precio}</div>
+              </div>
               <div>
                 <Link to={`/product/${product.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">Detail</Link>
               </div>

@@ -55,6 +55,7 @@ const ProductDetail = () => {
         <div className="w-full text-center md:text-left md:w-1/2 lg:w-1/2 xl:w-1/2 p-4 ml-6">
           <h2 className="text-2xl font-bold mb-2">{product.description}</h2>
           <p className="text-lg font-semibold mb-4">${product.precio}</p>
+          <p className="text-sm font-semibold mb-4">{product.codigo}</p>
 
           <div className="block md:flex items-center space-x-2 mb-4">
             <label htmlFor="quantity" className="text-lg">
